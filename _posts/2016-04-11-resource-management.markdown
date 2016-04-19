@@ -32,7 +32,7 @@ We discovered that while providing plugin triggers is great for tinkerers, it wa
 
 Even back then, the first comment was ["How do I use this to have persistent storage?"](https://github.com/dokku/dokku/commit/df8f4fb8824550518b07c87ac56aba568bd81295#commitcomment-10907582). In retrospect, yes, this is a *great* feature to have in the core, and the new [docker-options](http://dokku.viewdocs.io/dokku/docker-options/) plugin was a bit too much like shiny plumbing. While the maintainers were distracted with other issues, the hack-fix was to update the documentation to have persistent storage as the example usage.
 
-Dokku implemented this feature in 0.50 as the [storage](http://dokku.viewdocs.io/dokku/dokku-storage/) plugin thanks to [Justin Clark](https://github.com/u2mejc/). The interface is a nice piece of porcelain that utilizes the same plugin triggers that the docker-options plugin exposes, except handles the very specific case of attaching persistent storage. It has resulted in many fewer support requests, and I believe has provided developers with a much nicer Dokku experience.
+Dokku implemented this feature in 0.5.0 as the [storage](http://dokku.viewdocs.io/dokku/dokku-storage/) plugin thanks to [Justin Clark](https://github.com/u2mejc/). The interface is a nice piece of porcelain that utilizes the same plugin triggers that the docker-options plugin exposes, except handles the very specific case of attaching persistent storage. It has resulted in many fewer support requests, and I believe has provided developers with a much nicer Dokku experience.
 
 ### Where is the resource porcelain?
 
