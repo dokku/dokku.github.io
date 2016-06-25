@@ -6,7 +6,7 @@ categories: tutorials
 tags: dokku ports gogs tutorial
 ---
 
-Hot on the release of Dokku 0.6.0, here is a sweet tutorial made possible by the new port handling feature of Dokku.
+Hot off the release of Dokku 0.6.3, here is a sweet tutorial made possible by the new port handling feature of Dokku.
 
 ### What is Gogs?
 
