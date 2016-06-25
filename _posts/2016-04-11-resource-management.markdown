@@ -61,3 +61,6 @@ While dokku manages the lifecycle of application containers, it *does not* and a
 - [Pingdom](https://www.pingdom.com/): Make sure your site is responding to requests
 
 As many of our users have never actually maintained a server, we can certainly do more to help push our them in the right direction. In the next few weeks, we will be putting together a document that will gently push our users towards providers that may be able to take care of their needs, as well as clearly delineate where Dokku draws the line in the sand in terms of server management.
+
+{: .center}
+[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
