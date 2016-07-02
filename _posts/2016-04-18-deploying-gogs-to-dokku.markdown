@@ -99,9 +99,10 @@ git push dokku master
 Here is where it gets slightly tricky. You will want to use the following settings to configure Gogs:
 
 - MySQL connection information can be retrieved from `dokku mysql:info gogs`
-- Leave the ssh port as `22`, externally we will use `2222` and this is transparent to gogs.
+- Set the SSH port as `2222`. Gogs will use this to format your projects' SSH connection info in the UI.
 - Do not change the application port.
 - The application url should be changed to match your attached domain. In our case, it would be `http://gogs.dokku.me/`
+- The domain field should also be changed to match your attached domain, but without the 'http'. In our case, it would be `gogs.dokku.me`. This will also be used to format your projects' connection info the UI.
 - Any of the optional settings can be configured as you wish.
 
 Once you submit the form, you should have a working Gogs Installation!
