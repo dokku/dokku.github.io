@@ -13,7 +13,7 @@ description: > # this means to ignore newlines until "baseurl:"
   build and manage the lifecycle of applications.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://dokku.github.io" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
+twitter_username: dokku
 # github_username:  dokku
 
 # Build settings
