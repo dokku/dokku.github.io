@@ -15,7 +15,7 @@ To understand the challenges better, it is important to note that the internal r
 
 Externally, developers use the `dokku` cli to orchestrate their applications. This is a well-known interface with clear documentation and usage examples. The cli rarely changes drastically, only doing so to allow for new functionality in a way that does not break existing use. The output format also rarely changes in backwards incompatible ways. If you know how to use one Dokku installation from 2 years ago, a modern install will be extremely familiar to you. This nice interface is called the Porcelain.
 
-The analogy is thus: most folks using a restroom are well-acquainted with a toilet. Every toilet is similar, allowing for differences in color, size, and features - a bidet could be nice, as could an auto-flush feature. Very few folks know anything about the pipes that move waste and water around, only caring when it's broken or needs updating to support newer toilet features. The important thing is that you know how to use the toilet, that it does what you expect, and that you don't need to re-learn how to use it.
+The analogy is thus: most folks using a restroom are well-acquainted with a toilet, every toilet is similar, allowing for differences in color, size, and features - a bidet could be nice, as could an auto-flush feature. Very few folks know anything about the pipes that move waste and water around, only caring when it is broken or needs updating to support newer toilet features. The important thing is that you know how to use the toilet, that it does what you expect, and that you don't need to re-learn how to use it.
 
 ### A Common Interface
 
