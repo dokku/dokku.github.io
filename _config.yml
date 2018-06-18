@@ -20,3 +20,12 @@ url: "https://dokku.github.io" # the base hostname & protocol for your site
 markdown: kramdown
 
 permalink: /:categories/:title
+
+authors:
+  noah:
+    name: Noah Gray
+    display_name: Noah
+    email: noahgray@me.com
+    web: https://vmu.io
+    twitter: vmu_io
+    github: OKNoah
