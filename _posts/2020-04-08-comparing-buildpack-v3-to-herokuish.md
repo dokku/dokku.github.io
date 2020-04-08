@@ -301,12 +301,12 @@ The Dokku project is incredibly excited about Cloud Native Buildpacks and it's i
 
 If you'd like to have a say in how the CNB initiative develops, please feel free to join in with development or comment in the Slack community - they are a bunch of very friendly folks - where much of the current development is focused.
 
-- Blog: https://medium.com/buildpacks
-- Github: https://github.com/buildpacks
-- Mailing List: https://lists.cncf.io/g/cncf-buildpacks
-- Site: https://buildpacks.io/
-- Slack: https://slack.buildpacks.io/
-- Twitter: https://twitter.com/buildpacks_io
+- Blog: [https://medium.com/buildpacks](https://medium.com/buildpacks)
+- Github: [https://github.com/buildpacks](https://github.com/buildpacks)
+- Mailing List: [https://lists.cncf.io/g/cncf-buildpacks](https://lists.cncf.io/g/cncf-buildpacks)
+- Site: [https://buildpacks.io/](https://buildpacks.io/)
+- Slack: [https://slack.buildpacks.io/](https://slack.buildpacks.io/)
+- Twitter: [https://twitter.com/buildpacks_io](https://twitter.com/buildpacks_io)
 
 {: .center}
 [![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
