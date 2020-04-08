@@ -6,8 +6,6 @@ categories: general
 tags: dokku provisioning automation
 ---
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
-
 When you deploy an app with Dokku, a common workflow is to create an app on `git push`:
 
 ```bash
@@ -21,6 +19,8 @@ This works relatively well, and most folks then stumble through an initial app d
 - You need to replicate your deployment process on multiple servers/for multiple services.
 
 We'll evaluate two patterns to solve these problems, both of which are enabled by Dokku's porcelain interfaces.
+
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ### Running Code on Server Boot
 

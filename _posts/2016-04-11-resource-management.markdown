@@ -6,11 +6,11 @@ categories: features
 tags: dokku resource-management
 ---
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
-
 Every so often, user's ask if it's possible to use Dokku as the basis of a system where each user in Dokku would have access to *only* their applications. Because of various reasons, this isn't possible out of the box, though it's certainly within the realm of possibility.
 
 There are two requirements for such a system, one of which we'll cover here.
+
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ### Resource Management
 
