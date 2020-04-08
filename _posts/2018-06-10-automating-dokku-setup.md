@@ -6,6 +6,8 @@ categories: general
 tags: dokku provisioning automation
 ---
 
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+
 When you deploy an app with Dokku, a common workflow is to create an app on `git push`:
 
 ```bash
@@ -172,3 +174,10 @@ ansible-playbook -i hosts -s dokku.yml
 ### Going Further
 
 Once you have an `infra` repository containing the provisioning scripts for your servers, the next step is to do all Dokku configuration from this repository. This helps ensure migrating to a new server is as painless as possible, making service restoration a breeze.
+
+{: .center}
+[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+
+---
+
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

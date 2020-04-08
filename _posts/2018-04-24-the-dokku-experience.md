@@ -6,8 +6,9 @@ categories: general
 tags: dokku interfaces
 ---
 
-Dokku has historically had no way to introspect on the state of an installation. At one point in its history, we included a "backup" feature, which allowed users to export - and _maybe_ import - configuration and data. The challenge is in exposing this information in an easily parseable manner.
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
+Dokku has historically had no way to introspect on the state of an installation. At one point in its history, we included a "backup" feature, which allowed users to export - and _maybe_ import - configuration and data. The challenge is in exposing this information in an easily parseable manner.
 
 ### Plumbing vs Porcelain
 
@@ -42,3 +43,10 @@ The consistency here paves the way for automation.
 ### Interfacing with Dokku
 
 While we have a cli aimed at humans, as developers, we yearn for interfaces computers can automate. Our next blog post will cover how developers may interact with Dokku in a declarative fashion in order to ensure that their servers and applications are configured as expected.
+
+{: .center}
+[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+
+---
+
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

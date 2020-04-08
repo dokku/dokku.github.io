@@ -6,6 +6,8 @@ categories: tutorials
 tags: dokku ports gogs tutorial
 ---
 
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+
 Hot off the release of Dokku 0.6.3, here is a sweet tutorial made possible by the new port handling feature of Dokku.
 
 ### What is Gogs?
@@ -116,3 +118,7 @@ As we displayed above, Dokku's rich featureset allows developers to quickly and 
 
 {: .center}
 [![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+
+---
+
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

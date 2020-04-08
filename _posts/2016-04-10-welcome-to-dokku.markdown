@@ -6,6 +6,8 @@ categories: first-prost
 tags: dokku update
 ---
 
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+
 Hi all! The dokku maintainers finally decided it was a good idea to have a blog to post thoughts on the development, evolution, and roadmap of Dokku. Our goal with these posts is to help inform you - dokku users and developers - as to where dokku is headed both internally and externally.
 
 ### What is dokku?
@@ -62,3 +64,7 @@ Dokku's goal is to provide a simple, hackable build environment for developers t
 [plugin-configuration-management]: http://dokku.viewdocs.io/dokku/configuration-management/
 [plugin-storage]: http://dokku.viewdocs.io/dokku/dokku-storage/
 [progrium]: http://progrium.com/blog/
+
+---
+
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
