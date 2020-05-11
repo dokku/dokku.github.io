@@ -19,7 +19,7 @@ As time marched on, the Cloud Foundry software from Pivotal picked up the buildp
 - Buildpack v2a: Heroku-style buildpacks
 - Buildpack v2b: Cloud Foundry-style buildpacks
 
-For buildpack authors, the standards were largely compatible - and it would likely be possible to support both at once - but in practice you really only wrote a buildpack for the platform you were using. This also meant that new features for, say, the Python buildpack would need to be implemented twice in order to be supported on these two platforms.
+For buildpack authors, the standards were largely compatible - and it would likely be possible to support both at once - but in practice you really only wrote a buildpack for the platform you were using. This also meant that new features for, say, the NodeJs buildpack would need to be implemented twice in order to be supported on these two platforms.
 
 Additionally, the buildpack spec never specified anything about the underlying platform, so building a buildpack for Heroku's platform that depends on some OS-level dependency might not work at all when used with Cloud Foundry or vice versa.
 
@@ -65,7 +65,7 @@ Neither Cloud Foundry nor Heroku currently publish a `Dockerfile` for their imag
 
 ### Building apps
 
-The app we'll be playing with is the [node-js-getting-started](https://github.com/heroku/node-js-getting-started) app by Heroku. You can play around with your own app to see the results; also Python is currently supported with both builders as well as the `gliderlabs/herokuish` project.
+The app we'll be playing with is the [node-js-getting-started](https://github.com/heroku/node-js-getting-started) app by Heroku. You can play around with your own app to see the results; also NodeJs is currently supported with both builders as well as the `gliderlabs/herokuish` project.
 
 #### With CNB
 
