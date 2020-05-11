@@ -14,7 +14,7 @@ An upcoming piece of technology in the container space is Cloud Native Buildpack
 
 When Heroku first launched, they provided support for Rack applications, which worked fairly well for the budding Ruby community. As the Ruby community grew, this initial support started to become limiting for their users, and thus the Heroku community started reworking their internal tech to be more flexible in functionality they supported and how they launched processes, In fact, a lot of the fancy features and patterns you'll see in a modern PaaS - 12 factor apps, Procfile support, etc. - were first prototyped or promoted by Heroku. The process of detecting support, building app slugs, and releasing the built artifacts was one such initiative. Eventually, Heroku rebuilt their platform to support alternative programming runtimes as well as community contributed runtimes in what is now known as a buildpacks.
 
-As time marched on, the Cloud Foundry software from Pivotal picked up the buildpack tech. This would seem like an overal great thing for the community - buildpacks that have better support for enterprise environments and needs would certainly help with adoption in the corporate world - but ended up being not as great. As there was no real specification for Buildpack technology, Pivotal ended up diverging from Heroku's implementation, resulting in:
+As time marched on, the Cloud Foundry software from Pivotal picked up the buildpack tech. This would seem like an overall great thing for the community - buildpacks that have better support for enterprise environments and needs would certainly help with adoption in the corporate world - but ended up being not as great. As there was no real specification for Buildpack technology, Pivotal ended up diverging from Heroku's implementation, resulting in:
 
 - Buildpack v2a: Heroku-style buildpacks
 - Buildpack v2b: Cloud Foundry-style buildpacks
@@ -65,7 +65,7 @@ Neither Cloud Foundry nor Heroku currently publish a `Dockerfile` for their imag
 
 ### Building apps
 
-The app we'll be playing with is the [node-js-getting-started](https://github.com/heroku/node-js-getting-started) app by Heroku. You can play around with your own app to see the results, but Python is currently supported with both builders as well as the `gliderlabs/herokuish` project.
+The app we'll be playing with is the [node-js-getting-started](https://github.com/heroku/node-js-getting-started) app by Heroku. You can play around with your own app to see the results; also Python is currently supported with both builders as well as the `gliderlabs/herokuish` project.
 
 #### With CNB
 
@@ -278,7 +278,7 @@ docker image rm app/nodejs-herokuish:latest >/dev/null 2>&1|| true
 
 ## Dokku and Cloud Native Buildpacks
 
-In an ideal world, all the functionality currently provided by Heroku's v2a Buildpacks and it's ecosystem would immediately exist with Cloud Native Buildpacks. Unfortunately, the spec is still evolving - though nearing a v1! - and the user-base is comparatively small. If you are a buildpack author or a vendor using buildpack technology, now is likely the best time to get involved and raise concerns with the spec and ecosystem.
+In an ideal world, all the functionality currently provided by Heroku's v2a Buildpacks and its ecosystem would immediately exist with Cloud Native Buildpacks. Unfortunately, the spec is still evolving - though nearing a v1! - and the user-base is comparatively small. If you are a buildpack author or a vendor using buildpack technology, now is likely the best time to get involved and raise concerns with the spec and ecosystem.
 
 That said, Dokku has active development towards the addition of CNB to the platform. In our case, we will likely have it as an experimental feature controlled through the use of environment variables, and folks will be able to switch their installations between CNB and Herokuish. This will also likely require changes to certain plugins - in particular, those that interact with the built images - but these will hopefully be fairly minimal.
 
@@ -293,7 +293,7 @@ The `pack` cli tool already provides a way for folks to build and run applicatio
 
 The best course of action is for Herokuish to become unsupported once `pack` hits a stable release. It is unlikely that support for Herokuish will continue at that point, and only general maintenance work (upgrading buildpacks) would be performed at that time. Long-term, the project will likely be archived completely in favor of the upstream CNB projects.
 
-There isn't any timeline for the above other than experimental support for CNB in Dokku will land at some point in the near future, so folks installing and using Dokku won't need to worry too much about the process. Long-term, there will be a migration path outlined for users, and how that impacts users will depend on how much tooling is necessary to shim in the existing ecosystem around buildpacks. We hope to keep this minimal, but sometimes you need to break some eggs to make an omelete.
+There isn't any timeline for the above other than experimental support for CNB in Dokku will land at some point in the near future, so folks installing and using Dokku won't need to worry too much about the process. Long-term, there will be a migration path outlined for users, and how that impacts users will depend on how much tooling is necessary to shim in the existing ecosystem around buildpacks. We hope to keep this minimal, but sometimes you need to break some eggs to make an omelette.
 
 ## Cloud Native Buildpacks are the future
 
