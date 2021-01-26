@@ -111,7 +111,10 @@ All that said, not all plugins will be rewritten in Golang - the `git` plugin is
 
 0.22.x was a feature-packed release, and we're not slowing down. 0.23.x is around the corner, and will include quite a few interesting features for folks. We'll save those notes for the next blog post :)
 
-As always, please post issues with bugs or functionality you think Dokku might benefit from. As well, feel free to hop onto our [Slack channel](https://glider-slackin.herokuapp.com/) if you have questions, comments, or concerns.
+As always, please post issues with bugs or functionality you think Dokku might benefit from. As well, feel free to hop into [Github Discussions](https://github.com/dokku/dokku/discussions) or [Slack channel](https://glider-slackin.herokuapp.com/) if you have questions, comments, or concerns.
+
+{: .center}
+[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
 
 ---
 
