@@ -10,7 +10,7 @@ Every so often, user's ask if it's possible to use Dokku as the basis of a syste
 
 There are two requirements for such a system, one of which we'll cover here.
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ### Resource Management
 
@@ -32,9 +32,9 @@ Take for instance the persistent storage. Dokku has long had plugin hooks, and v
 
 We discovered that while providing plugin triggers is great for tinkerers, it wasn't exactly the nicest way to configure docker options. Many users ended up using a plugin by [Dyson Simmons](https://github.com/dyson), the [unofficial docker-options](https://github.com/dyson/dokku-docker-options) plugin. I even pointed users at it for a while. At some point, we decided to integrate it into the core, and it was implemented in [#1080](https://github.com/dokku/dokku/pull/1080) by [Michael Hobbs](https://github.com/michaelshobbs) and released in [0.3.17](https://github.com/dokku/dokku/blob/master/HISTORY.md#0317).
 
-Even back then, the first comment was ["How do I use this to have persistent storage?"](https://github.com/dokku/dokku/commit/df8f4fb8824550518b07c87ac56aba568bd81295#commitcomment-10907582). In retrospect, yes, this is a *great* feature to have in the core, and the new [docker-options](http://dokku.viewdocs.io/dokku/docker-options/) plugin was a bit too much like shiny plumbing. While the maintainers were distracted with other issues, the hack-fix was to update the documentation to have persistent storage as the example usage.
+Even back then, the first comment was ["How do I use this to have persistent storage?"](https://github.com/dokku/dokku/commit/df8f4fb8824550518b07c87ac56aba568bd81295#commitcomment-10907582). In retrospect, yes, this is a *great* feature to have in the core, and the new [docker-options](https://dokku.com/docs/advanced-usage/docker-options/) plugin was a bit too much like shiny plumbing. While the maintainers were distracted with other issues, the hack-fix was to update the documentation to have persistent storage as the example usage.
 
-Dokku implemented this feature in 0.5.0 as the [storage](http://dokku.viewdocs.io/dokku/dokku-storage/) plugin thanks to [Justin Clark](https://github.com/u2mejc/). The interface is a nice piece of porcelain that utilizes the same plugin triggers that the docker-options plugin exposes, except handles the very specific case of attaching persistent storage. It has resulted in many fewer support requests, and I believe has provided developers with a much nicer Dokku experience.
+Dokku implemented this feature in 0.5.0 as the [storage](https://dokku.com/docs/advanced-usage/persistent-storage/) plugin thanks to [Justin Clark](https://github.com/u2mejc/). The interface is a nice piece of porcelain that utilizes the same plugin triggers that the docker-options plugin exposes, except handles the very specific case of attaching persistent storage. It has resulted in many fewer support requests, and I believe has provided developers with a much nicer Dokku experience.
 
 ### Where is the resource porcelain?
 
@@ -65,8 +65,8 @@ While dokku manages the lifecycle of application containers, it *does not* and a
 As many of our users have never actually maintained a server, we can certainly do more to help push our them in the right direction. In the next few weeks, we will be putting together a document that will gently push our users towards providers that may be able to take care of their needs, as well as clearly delineate where Dokku draws the line in the sand in terms of server management.
 
 {: .center}
-[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+[![dokku](/img/dokku.png)](https://dokku.com/)
 
 ---
 
-If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

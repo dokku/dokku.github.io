@@ -8,7 +8,7 @@ tags: dokku release
 
 It's been a few months since the last release post, so we'll summarize whats been going on in Dokku Land in 2020.
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ## Discussions
 
@@ -32,7 +32,7 @@ Other than the above, 0.21.0 was mostly a bugfix release. Hopefully it was to yo
 
 ### 0.22.x
 
-The 0.22.x was a bit more expansive in the number of changes it introduced. There were a number of [changes and deprecations](http://dokku.viewdocs.io/dokku/appendices/0.22.0-migration-guide/), the most major of which were:
+The 0.22.x was a bit more expansive in the number of changes it introduced. There were a number of [changes and deprecations](https://dokku.com/docs/appendices/0.22.0-migration-guide/), the most major of which were:
 
 - Process type names specified in `Procfile` files and app names may no longer use characters not valid in DNS Label Names (RFC 1123). This allows us to properly support networking in alternative schedulers - such as Kubernetes and Nomad - as well as internal app networking with the default Docker Local scheduler.
 - The `ps` plugin had it's `*all` commands removed in favor of a `--all` flag. This was actually fairly major, as it changes how parallelism works within Dokku, and makes it easier to support parallel commands against multiple applications. In the future, you'll be seeing more `--all` flag support in Dokku (as well as `--global` as necessary).
@@ -85,7 +85,7 @@ This came late in the 0.22.x lifecycle (0.22.6/0.22.7), but was added to address
 
 Vector is based on the idea of `inputs`, `transforms` and `sinks`. Dokku will automatically inject the correct `inputs` for all Docker containers, and it is up to you to define a `sink` to which you can send container logs (globally or per-app). Dokku does not currently support customizing transforms, though this may come in a future release.
 
-Checkout the [Vector Log Shipping docs](http://dokku.viewdocs.io/dokku/deployment/logs/#vector-logging-shipping) for mor usage information.
+Checkout the [Vector Log Shipping docs](https://dokku.com/docs/deployment/logs/#vector-logging-shipping) for more usage information.
 
 #### Golang Plugin Rewrites
 
@@ -114,8 +114,8 @@ All that said, not all plugins will be rewritten in Golang - the `git` plugin is
 As always, please post issues with bugs or functionality you think Dokku might benefit from. As well, feel free to hop into [Github Discussions](https://github.com/dokku/dokku/discussions) or [Slack channel](https://glider-slackin.herokuapp.com/) if you have questions, comments, or concerns.
 
 {: .center}
-[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+[![dokku](/img/dokku.png)](https://dokku.com/)
 
 ---
 
-If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

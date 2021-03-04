@@ -20,7 +20,7 @@ This works relatively well, and most folks then stumble through an initial app d
 
 We'll evaluate two patterns to solve these problems, both of which are enabled by Dokku's porcelain interfaces.
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ### Running Code on Server Boot
 
@@ -176,8 +176,8 @@ ansible-playbook -i hosts -s dokku.yml
 Once you have an `infra` repository containing the provisioning scripts for your servers, the next step is to do all Dokku configuration from this repository. This helps ensure migrating to a new server is as painless as possible, making service restoration a breeze.
 
 {: .center}
-[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+[![dokku](/img/dokku.png)](https://dokku.com/)
 
 ---
 
-If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

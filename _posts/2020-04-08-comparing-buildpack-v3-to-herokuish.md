@@ -8,7 +8,7 @@ tags: dokku buildpacks herokuish
 
 An upcoming piece of technology in the container space is Cloud Native Buildpacks (CNB). This is an initiative led by Pivotal and Heroku and contributed to by a wide range of community members, and one that the Dokku project has been following fairly closely. CNB builds upon the buildpack "standard" initially developed at Heroku, modified at Pivotal for Cloud Foundry, and used/abused by the `gliderlabs/herokuish` project. This post goes over a small amount of history, compares buildpack implementations across vendors, and talks about the future of buildpacks as they relate to Dokku.
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ## History Channel Vault
 
@@ -309,8 +309,8 @@ If you'd like to have a say in how the CNB initiative develops, please feel free
 - Twitter: [https://twitter.com/buildpacks_io](https://twitter.com/buildpacks_io)
 
 {: .center}
-[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+[![dokku](/img/dokku.png)](https://dokku.com/)
 
 ---
 
-If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.

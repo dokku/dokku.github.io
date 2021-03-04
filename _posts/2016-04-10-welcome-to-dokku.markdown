@@ -8,7 +8,7 @@ tags: dokku update
 
 Hi all! The dokku maintainers finally decided it was a good idea to have a blog to post thoughts on the development, evolution, and roadmap of Dokku. Our goal with these posts is to help inform you - dokku users and developers - as to where dokku is headed both internally and externally.
 
-> If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+> If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
 
 ### What is dokku?
 
@@ -56,15 +56,15 @@ Plugins can be built in any language - in fact, some prototypes have been writte
 Dokku's goal is to provide a simple, hackable build environment for developers to quickly get their code from their laptops into the cloud. Our personal goal is to make the deployment part easy, so all you have to do is worry about writing code.
 
 {: .center}
-[![dokku](/img/dokku.png)](http://dokku.viewdocs.io/dokku/)
+[![dokku](/img/dokku.png)](https://dokku.com/)
 
 [dokku-team]: https://github.com/orgs/dokku/people
 [gliderlabs]: https://gliderlabs.com/
-[plugin-checks]: http://dokku.viewdocs.io/dokku/checks-examples/
-[plugin-configuration-management]: http://dokku.viewdocs.io/dokku/configuration-management/
-[plugin-storage]: http://dokku.viewdocs.io/dokku/dokku-storage/
+[plugin-checks]: https://dokku.com/docs/deployment/zero-downtime-deploys/
+[plugin-configuration-management]: https://dokku.com/docs/configuration/environment-variables/
+[plugin-storage]: https://dokku.com/docs/advanced-usage/persistent-storage/
 [progrium]: http://progrium.com/blog/
 
 ---
 
-If you're using Dokku - especially for commercial purposes - consider donating to project development via [OpenCollective](https://opencollective.com/dokku) or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
+If you're using Dokku - especially for commercial purposes - consider donating to project development via [Github Sponsors](https://github.com/sponsors/dokku), [OpenCollective](https://opencollective.com/dokku), or [Patreon](https://www.patreon.com/dokku). Funds go to general development, support, and infrastructure costs.
