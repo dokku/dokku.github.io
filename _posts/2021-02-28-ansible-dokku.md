@@ -193,6 +193,10 @@ Create `host_vars/dev-dokku.yml`: ansible variables for dokku servers
 ```yaml
 dokku_vhost_enable: 'true'
 
+# app-level limits
+my_dokku_cpu_limit: 4  # in number of CPUs
+my_dokku_memory_limit: 8G # in GB
+
 dokku_users:
   - username: ltalirz
     email: leopold.talirz@gmail.com
