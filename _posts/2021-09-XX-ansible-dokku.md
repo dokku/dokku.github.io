@@ -67,11 +67,13 @@ Further details can be found in dokku's general [installation instructions](http
 
 In the following, we will drop the distinction between client and server because... all the commands will be run on the client.
 
-Since you're about to begin encoding your infrastructure, it's a good idea to start a new git repository
-```
-$ mkdir my-dokku-playbook
-$ cd my-dokku-playbook
-$ git init
+**Note:** This blog post guides you through all the steps but those who don't like to copy-paste can also just get all of the code via `git clone https://github.com/ltalirz/ansible-playbook-dokku my-dokku-playbook`.
+
+Since you're about to cast your infrastructure into code, it's a good idea to start a new git repository
+```shell
+mkdir my-dokku-playbook
+cd my-dokku-playbook
+git init
 ```
 
 Let's create a couple of files:
