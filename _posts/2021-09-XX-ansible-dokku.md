@@ -177,14 +177,16 @@ Let's add the following lines to our `playbook.yml`:
     tags: my_dokku_apps
 ```
 
+Let's run our new set of tasks without re-running the dokku role by using the `my_dokku_apps` tag:
+
 ```shell
 ansible-playbook playbook.yml --tags my_dokku_apps
 ```
 
 ## Adding users
 
-We want to operate the dokku platform as a service (PaaS), so want to enable users to manage their own apps.
-The dokku ansible role les you manage users and their permissions from a central yaml file.
+We want to operate the dokku platform as a service (PaaS), so we want to enable users to manage their own apps.
+The dokku ansible role lets you manage users and their permissions from a central yaml file.
 
 Let's start by creating a list with the minimum information we need, and work our way back from there.
 
@@ -208,14 +210,14 @@ dokku_users:
 
 The list contains, for each user:
  * A `username` used as a dokku-internal identifier (just pick one)
- * A contact email (optional)
+ * A contact `email` (optional)
  * The user's public SSH key
- * A list of apps the user is allowed to manage
+ * A list of `apps` the user is allowed to manage
 
 In order to provision our dokku instance accordingly, we need to loop twice:
 first over the list of users and then over the list of apps.
  
-Let's add to our `playbook.yml`:
+Let's add a task to our `playbook.yml`:
 ```yaml
 - name: configure users
   - name: Create apps for dokku users
@@ -225,6 +227,8 @@ Let's add to our `playbook.yml`:
     with_items: "{{ dokku_users }}"
     tags: my_dokku_users
 ```
+
+Here we are looping over the users, running `app-single.yml` for each user.
 
 `user-single.yml`: ansible task list that provisions apps for a single user
 ```yaml
@@ -239,6 +243,9 @@ Let's add to our `playbook.yml`:
     loop_var: dokku_app
   with_items: "{{ dokku_user.apps }}"
 ```
+
+And finally, for each app listed we will (1) create the app, (2) give the user access to manage the app, and (3) apply the resource limits to it.
+For the moment, resource limits are global but the approach above illustrates how they could be adapted per app.
 
 `app-single.yml`: ansible task list that provisions a single app for a user
 ```yaml
@@ -259,6 +266,8 @@ Let's add to our `playbook.yml`:
       --cpu {{ my_dokku_cpu_limit }} \
       {{ dokku_app.name }}
 ```
+
+The following will create the new apps and give the users access to them:
 
 ```
 ansible-playbook playbook.yml --tags my_dokku_users
