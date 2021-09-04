@@ -291,6 +291,17 @@ Finally, let's add some global configuration concerning which commands regular u
     tags: my_dokku_superuser
 ```
 
+```
+$ ansible-playbook playbook.yml --tags my_dokku_superuser
+```
+
+## Conclusions
+
+That's it - you now have a dokku instance managed through ansible.
+
+See [here](https://github.com/ltalirz/ansible-playbook-dokku) for the code used in this blog post.
+Feel free to open issues on the tracker if you notice things to improve.
+
 ## Further reading
 
 #### Modularisation with ansbile roles
