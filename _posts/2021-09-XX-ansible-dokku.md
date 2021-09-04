@@ -306,7 +306,7 @@ Feel free to open issues on the tracker if you notice things to improve.
 
 ## Further reading
 
-#### Modularisation with ansbile roles
+#### Modularization with ansible roles
 
 For the sake of brevity, in this post we have added all instructions directly to the `playbook.yml`.
 With this approach, over time the playbook can become long and hard to read.
