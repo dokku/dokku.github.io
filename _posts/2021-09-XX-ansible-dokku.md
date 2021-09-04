@@ -14,7 +14,7 @@ Specifically we're going to:
   1. provision new apps
   1. add users and give the access to apps
 
-Contrary to our last [dabble in ansible from 2018](https://dokku.github.io/general/automating-dokku-setup), this time we're going to take advantage of the dedicated [dokku ansible role](https://github.com/dokku/ansible-dokku) that automates much of the process.
+Contrary to our last [dabble in ansible from 2018](https://dokku.github.io/general/automating-dokku-setup), this time we're going to take advantage of a new, dedicated ansible role: [`ansible-dokku`](https://github.com/dokku/ansible-dokku) not only makes it a breeze to provision a new dokku instance, it also includes an array of ansible *modules* that help with managing its configuration over time.
 
  ## Basics
 
@@ -303,6 +303,8 @@ That's it - you now have a dokku instance managed through ansible.
 
 See [here](https://github.com/ltalirz/ansible-playbook-dokku) for the code used in this blog post.
 Feel free to open issues on the tracker if you notice things to improve.
+
+Thanks go to all [contributors of the `ansible-dokku` role](https://github.com/dokku/ansible-dokku/graphs/contributors).
 
 ## Further reading
 
