@@ -113,14 +113,14 @@ dev-dokku ansible_host=111.222.333.444 ansible_user=ubuntu
 
 Let's install stuff
 ```shell
-$ pip install -r requirements.txt
-$ mkdir ./roles
-$ ansible-galaxy install -r requirements.yml
+pip install -r requirements.txt
+mkdir ./roles
+ansible-galaxy install -r requirements.yml
 ```
 
 And a final test to see whether ansible can connect:
 ```shell
-$ ansible all -m ping
+ansible all -m ping
 ```
 
 ## Deploying the dokku instance
@@ -150,7 +150,7 @@ dokku_plugins:  # dokku plugins to install
 
 That's it! Let's run the playbook
 ```
-$ ansible-playbook playbook.yml
+ansible-playbook playbook.yml
 ```
 
 ## Provisioning new apps
@@ -160,13 +160,6 @@ Now we want to bring it to life with our own apps, users, etc.
 
 Let's add the following lines to our `playbook.yml`:
 ```yaml
-- name: apply roles
-  hosts: dokku_servers
-  roles:
-  # add whatever roles you need
-  - role: dokku_bot.ansible_dokku
-    tags: dokku
-    become: true
   tasks:
   - name: Create seekpath app
     dokku_clone:
@@ -185,7 +178,7 @@ Let's add the following lines to our `playbook.yml`:
 ```
 
 ```shell
-$ ansible-playbook playbook.yml --tags my_dokku_apps
+ansible-playbook playbook.yml --tags my_dokku_apps
 ```
 
 ## Adding users
@@ -268,7 +261,7 @@ Let's add to our `playbook.yml`:
 ```
 
 ```
-$ ansible-playbook playbook.yml --tags my_dokku_users
+ansible-playbook playbook.yml --tags my_dokku_users
 ```
 
 
@@ -292,7 +285,7 @@ Finally, let's add some global configuration concerning which commands regular u
 ```
 
 ```
-$ ansible-playbook playbook.yml --tags my_dokku_superuser
+ansible-playbook playbook.yml --tags my_dokku_superuser
 ```
 
 ## Conclusions
