@@ -16,7 +16,7 @@ Specifically we're going to:
 
 Contrary to our last [dabble in ansible from 2018](https://dokku.github.io/general/automating-dokku-setup), this time we're going to take advantage of a new, dedicated ansible role: [`ansible-dokku`](https://github.com/dokku/ansible-dokku) not only makes it a breeze to provision a new dokku instance, it also includes an array of ansible *modules* that help with managing its configuration over time.
 
- ## Basics
+## Basics
 
 [ansible](https://en.wikipedia.org/wiki/Ansible_(software)) is a tool for automating deployment, configuration management, and application management.
 
@@ -166,6 +166,7 @@ Let's add the following lines to our `playbook.yml`:
       app: seekpath
       repository: https://github.com/materialscloud-org/tools-seekpath
       version: v21.06.0
+      # build: true
     tags: my_dokku_apps
 
   - name: Configure ports for seekpath app
