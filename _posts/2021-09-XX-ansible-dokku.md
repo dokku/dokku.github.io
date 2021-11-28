@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Managing your dokku instance with ansible"
-date:   2021-08-28 00:22:50 -0400
+date:   2021-11-28 00:22:50 -0400
 categories: release
 tags: dokku release
 ---
@@ -87,7 +87,7 @@ ansible
 ```yaml
 roles:
 - src: dokku_bot.ansible_dokku
-  version: v2021.9.5
+  version: v2021.11.28
 ```
 
 `ansible.cfg`: ansible configuration
@@ -146,6 +146,8 @@ docker_users:  # users that are allowed to run docker commands
 dokku_plugins:  # dokku plugins to install
 - name: acl
   url: https://github.com/dokku-community/dokku-acl
+- name: letsencrypt
+  url: https://github.com/dokku/dokku-letsencrypt
 ```
 
 That's it! Let's run the playbook
@@ -156,9 +158,9 @@ ansible-playbook playbook.yml
 ## Provisioning new apps
 
 The previous section gave us a bare-bones dokku instance.
-Now we want to bring it to life with our own apps, users, etc.
+Now let's bring it to life with our own apps, users, etc.
 
-Let's add the following lines to our `playbook.yml`:
+Add the following lines to our `playbook.yml`:
 ```yaml
   tasks:
   - name: Create seekpath app
@@ -193,20 +195,19 @@ Let's start by creating a list with the minimum information we need, and work ou
 
 Create `host_vars/dev-dokku.yml`: ansible variables for the `dev-dokku` server
 ```yaml
-dokku_vhost_enable: 'true'
-
 # app-level resource limits
 my_dokku_cpu_limit: 2  # max. number of CPUs per app
 my_dokku_memory_limit: 4G # max. memory per app in GBytes
 
 dokku_users:
-  - username: ltalirz
-    email: lt@gmail.com
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChkphp/4wgTnVrYNuyE6eVNcMFzOZwglj4cP8IAtZwEde8y3KwKEHX6jG3j2tFiV9EGS+7aLVqXsHf/OFTHjad54OEafG5/BR/c2dVhk7dOGhPTCvZza8fX/9IyZiYRRBGx2lH4Y9ypSJyQ/6QzpgCe0Qd9zqnVWrqyY4ny+vsuGiSp+QWPNs0YD+tmvmPh1RvMxWdWMKGXt1QLscN3azRUl140wWLK3uAc85tqgyGCAFxOK8rOpok8GoypD2CRBNfyyislUWE+OGXxdhwOwaYEbj9vScTiMDPuEDgXpoKEaEPnMh5axmy38IXOoNhnndwwLzqiIs6ssiYUOjvmqgD"
-    apps:
-      - name: seekpath
-      - name: oximachine
-      - name: mofchecker
+- username: ltalirz
+  email: lt@gmail.com
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChkphp/4wgTnVrYNuyE6eVNcMFzOZwglj4cP8IAtZwEde8y3KwKEHX6jG3j2tFiV9EGS+7aLVqXsHf/OFTHjad54OEafG5/BR/c2dVhk7dOGhPTCvZza8fX/9IyZiYRRBGx2lH4Y9ypSJyQ/6QzpgCe0Qd9zqnVWrqyY4ny+vsuGiSp+QWPNs0YD+tmvmPh1RvMxWdWMKGXt1QLscN3azRUl140wWLK3uAc85tqgyGCAFxOK8rOpok8GoypD2CRBNfyyislUWE+OGXxdhwOwaYEbj9vScTiMDPuEDgXpoKEaEPnMh5axmy38IXOoNhnndwwLzqiIs6ssiYUOjvmqgD"  # noqa
+  apps:
+  - name: seekpath
+  - name: oximachine
+  - name: mofchecker
+
 ```
 
 The list contains, for each user:
@@ -234,10 +235,6 @@ Here we are looping over the users, running `app-single.yml` for each user.
 `user-single.yml`: ansible task list that provisions apps for a single user
 ```yaml
 ---
-- name: List apps for user "{{ dokku_user.username }}"
-  command: dokku acl:allowed {{ dokku_user.username }}
-  register: allowed_apps
-
 - name: Process apps for user "{{ dokku_user.username }}"
   include_tasks: app-single.yml
   loop_control:
@@ -254,18 +251,19 @@ For the moment, resource limits are global but the approach above illustrates ho
 - name: Create app {{ dokku_app.name }}
   dokku_app:
     app: "{{ dokku_app.name }}"
-  when: dokku_app.name not in allowed_apps.stdout_lines
 
-- name: Let user {{ dokku_user.username }} manage app {{ dokku_app.name}}
-  command: dokku acl:add {{ dokku_app.name }} {{ dokku_user.username }}
-  when: dokku_app.name not in allowed_apps.stdout_lines
+- name: Let user {{ dokku_user.username }} manage app {{ dokku_app.name }}  # noqa 301
+  dokku_acl_app:
+    app: "{{ dokku_app.name }}"
+    users:
+    - "{{ dokku_user.username }}"
 
-- name: Set default resource limits for app {{ dokku_app.name}}
-  command: >
-    dokku resource:limit \
-      --memory {{ my_dokku_memory_limit }} \
-      --cpu {{ my_dokku_cpu_limit }} \
-      {{ dokku_app.name }}
+- name: Set default resource limits for app {{ dokku_app.name }}  # noqa 301
+  dokku_resource_limit:
+    app: "{{ dokku_app.name }}"
+    resources:
+      cpu: "{{ my_dokku_cpu_limit }}"
+      memory: "{{ my_dokku_memory_limit }}"
 ```
 
 The following will create the new apps and give the users access to them:
@@ -278,20 +276,17 @@ ansible-playbook playbook.yml --tags my_dokku_users
 Finally, let's add some global configuration concerning which commands regular users are allowed to run
 ```yaml
   # see https://github.com/dokku-community/dokku-acl
-  - name: Configure ACLs, set set dokku superuser "{{ my_dokku_superuser }}"
-    become: true
-    become_user: dokku
-    lineinfile:
-      path: "~dokku/.dokkurc/acl"
-      line: "{{ item }}"
-      create: true
-    with_items:
-      - export DOKKU_ACL_ALLOW_COMMAND_LINE=1
-      - export DOKKU_SUPER_USER={{ my_dokku_superuser }}
-      # limit commands that non-superusers can run globally
-      - export DOKKU_ACL_USER_COMMANDS="help version"
-      - export DOKKU_ACL_PER_APP_COMMANDS="logs urls ps:rebuild ps:restart ps:stop ps:start git-upload-pack git-upload-archive git-receive-pack git-hook storage:list proxy:ports proxy:ports-set proxy:report enter config:bundle config:clear config:export config:get config:keys config:set config:unset"
-    tags: my_dokku_superuser
+  - name: Set global dokku configuration options
+    dokku_config:
+      app: '--global'
+      config:
+        DOKKU_ACL_ALLOW_COMMAND_LINE: "1"
+        DOKKU_ACL_USER_COMMANDS: "help version"
+        # 'default' is the dokku user associated with logging in via SSH
+        # You can pick any other user known to dokku to be the superuser.
+        # DOKKU_SUPER_USER: 'default'
+        DOKKU_ACL_PER_APP_COMMANDS: "logs urls ps:rebuild ps:restart ps:stop ps:start git-upload-pack git-upload-archive git-receive-pack git-hook storage:list proxy:ports proxy:ports-set proxy:report enter config:bundle config:clear config:export config:get config:keys config:set config:unset"  # noqa 204
+      tags: my_dokku_superuser
 ```
 
 ```
@@ -314,83 +309,59 @@ Thanks go to all [contributors of the `ansible-dokku` role](https://github.com/d
 For the sake of brevity, in this post we have added all instructions directly to the `playbook.yml`.
 With this approach, over time the playbook can become long and hard to read.
 For increased modularity, create a new `my_dokku` ansible role in the `./roles` directory, bundle the tasks in there, and then `include_role` the role in the playbook.
-See the [ansible docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) for more information.
+See the [ansible docs on writing roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) for more information.
 
 #### Certificate management
 
 This post hasn't touched on how to manage SSL certificates.
-If you're operating dokku as a PaaS, you will likely want to use a wildcard SSL certificate in order to avoid having to create and manage individual certificates for each app.
 
-There are two aspects to this:
+In order to get a SSL certificate, you'll first need a domain name (say, `dokku.me`) and point it to your dokku instance.
 
-1. Obtaining the certificate.
+Once that's done, configure the domain name in your `host_vars/dev-dokku.yml`:
+```yaml
+dokku_vhost_enable: 'true'  # use vhost-based deployments
+# Serve apps under appname.dokku.me
+dokku_hostname: dokku.me
+```
 
-You can [get wildcard SSL certificates for free from Let's Encrypt](https://community.letsencrypt.org/t/acme-v2-production-environment-wildcards/55578).
-Different from regular certificates, however, Let's Encrypt mandates using the ACME v2 protocol for obtaining wildcard certificates, which requires you to set a DNS record both in order to acquire the certificate and for every renewal.
+From here on, the [`dokku-letsencrypt` plugin](https://github.com/dokku/dokku-letsencrypt) automates the process.
+Simply add the following task to your `apps-single.yml`:
+```yaml
+- name: configure let's encrypt certificate
+  dokku_letsencrypt:
+    app: myapp
+  tags: my_dokku_letsencrypt
+```
+and add the following configuration options to your `playbook.yml` (add it _before_ the `user-single.yml` task):
 
-[Some DNS providers](https://github.com/acmesh-official/acme.sh/wiki/dnsapi) offer free APIs to set DNS records and there are tools like [acme.sh](https://github.com/acmesh-official/acme.sh) that can talk to these APIs.
+```yaml
+  - name: Set global dokku configuration options
+    dokku_config:
+      app: '--global'
+      config:
+        # Contact email for Let's Encrypt SSL certificates
+        DOKKU_LETSENCRYPT_EMAIL: "me@provider.net"
+        # Comment the line below to use the Let's Encrypt production server
+        DOKKU_LETSENCRYPT_SERVER: "staging"
+      tags: my_dokku_letsencrypt
+```
+
+That's all! After running
+```
+ansible-playbook playbook.yml --tags my_dokku_letsencrypt
+```
+you should be able to securely access your apps, e.g. the `seekpath` app under https://seekpath.dokku.me.
+A cronjob is automatically created that takes care of renewing the certificates before they expire.
+
+##### Wildcard certificates
+
+The method described above is low-maintenance, but it creates a new certificate for each app.
+If you are running a large dokku instance, you may want to consider creating a single wildcard certificate (e.g. for `*.dokku.me`) that can be reused by all apps.
+
+Let's Encrypt mandates using the ACME v2 protocol for obtaining wildcard certificates, which requires you to set a DNS record both in order to acquire the certificate and for every renewal.
+[Some DNS providers](https://github.com/acmesh-official/acme.sh/wiki/dnsapi) offer APIs for setting DNS records, and there are tools like [acme.sh](https://github.com/acmesh-official/acme.sh) that can talk to these APIs.
 However, automating this will typically require you to permanently store an API token on your server which may pose a security risk.
-The alternative is to update the wildcard certificate manually, possibly via a tagged ansible task such as:
-
-```yaml
-- name: Check if wildcard certificate exists
-  become: true
-  stat:
-    path: /etc/letsencrypt/live/{{ domain }}/fullchain.pem
-  register: cert
-
-- name: Instructions for setting up wildcard certificate via DNS record
-  fail:
-    msg: |
-      Wildcard certificate not yet deployed (needs manual procedure).
-      Connect to the VM, run
-
-        sudo letsencrypt certonly --manual --preferred-challenges=dns --email {{ cert_email }} --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d *.{{ domain }}
-
-      and follow instructions.
-  when: not cert.stat.exists
-
-- name: Check if wildcard certificate is due for renewal (task fails if cert is invalid)
-  become: true
-  shell: certbot certificates | grep VALID | grep -v INVALID | awk '{print $6}'
-  when: cert.stat.exists
-  register: valid_days
-
-- name: Instructions for renewing wildcard certificate via DNS record
-  fail:
-    msg: |
-      Wildcard certificate is due for renewal (needs manual procedure).
-      Connect to the VM, run
-
-        sudo letsencrypt certonly --manual --preferred-challenges=dns --email {{ cert_email }} --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d *.{{ domain }}
-
-      and follow instructions.
-  when: valid_days.stdout | int < 30
-```
-
-2. Configuring the dokku apps to use the certificate.
-
-Give the `dokku`  user access to the cert and then set it to be used globally:
-
-```yaml
-  - name: Configure ACLs, set set dokku superuser
-    become: true
-    lineinfile:
-      path: "~dokku/.dokkurc/acl"
-      line: "{{ item }}"
-      create: true
-      owner: dokku
-      mode: '0644'
-    with_items:
-    - export DOKKU_ACL_ALLOW_COMMAND_LINE=1
-    # 'default' is the dokku user associated with logging in via SSH
-    # You can pick any other dokku user configured
-    # - export DOKKU_SUPER_USER=' default'
-    # limit commands that non-superusers can run globally
-    - export DOKKU_ACL_USER_COMMANDS="help version"
-    - export DOKKU_ACL_PER_APP_COMMANDS="logs urls ps:rebuild ps:restart ps:stop ps:start git-upload-pack git-upload-archive git-receive-pack git-hook storage:list proxy:ports proxy:ports-set proxy:report enter config:bundle config:clear config:export config:get config:keys config:set config:unset"  # noqa 204
-    tags: my_dokku_superuser
-```
+One alternative is to update the wildcard certificate manually, possibly via a tagged ansible task.
 
 ---
 
